@@ -1,5 +1,5 @@
 <form id="form-purchase" class="form-horizontal" action="purchase.php" method="post" enctype="multipart/form-data">
-<input type="hidden" name="action_type" value="CREATE">
+  <input type="hidden" name="action_type" value="CREATE">
   <div class="box-body">
     <div class="form-group">
       <label for="date" class="col-sm-3 control-label">
@@ -11,11 +11,11 @@
     </div>
 
     <div class="form-group">
-      <label for="reference_no" class="col-sm-3 control-label">
+      <label for="reference_no" class="col-sm-3 control-label" hidden>
         <?php echo trans('label_reference_no'); ?><i class="required">*</i>
       </label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" id="reference_no" name="reference_no" autocomplete="off">
+        <input type="hidden" class="form-control" id="reference_no" name="reference_no" autocomplete="off">
       </div>
     </div>
 
@@ -33,7 +33,7 @@
         <?php echo trans('label_status'); ?><i class="required">*</i>
       </label>
       <div class="col-sm-6">
-        <select id="status" class="form-control" name="status" >
+        <select id="status" class="form-control" name="status">
           <option value="received"><?php echo trans('text_received'); ?></option>
           <option value="pending"><?php echo trans('text_pending'); ?></option>
           <option value="ordered"><?php echo trans('text_ordered'); ?></option>
@@ -57,6 +57,19 @@
 
     <div class="well well-sm">
 
+      <div class="form-group">
+        <label for="sup_type" class="col-sm-3 control-label">
+          Purchase Type<i class="required">*</i>
+        </label>
+        <div class="col-sm-6">
+          <select id="sup_type" class="form-control select2" name="sup_type">
+            <option value=""><?php echo trans('text_select'); ?></option>
+            <option value="Supplier">Supplier</option>
+            <option value="Walk In Supplier">Walk In Supplier</option>
+          </select>
+        </div>
+      </div>
+
       <div class="form-group sup-id-selector">
         <label for="sup_id" class="col-sm-3 control-label">
           <?php echo trans('label_supplier'); ?><i class="required">*</i>
@@ -65,8 +78,8 @@
           <select id="sup_id" class="form-control select2" name="sup_id">
             <option value=""><?php echo trans('text_select'); ?></option>
             <?php foreach (get_suppliers() as $sup) : ?>
-              <option value="<?php echo $sup['sup_id'];?>">
-                <?php echo $sup['sup_name'];?>
+              <option value="<?php echo $sup['sup_id']; ?>">
+                <?php echo $sup['sup_name']; ?>
               </option>
             <?php endforeach; ?>
           </select>
@@ -89,7 +102,7 @@
               </a>
             </div>
           </div>
-        </div>  
+        </div>
       </div>
 
       <div class="row">
@@ -124,7 +137,7 @@
                   </th>
                 </tr>
               </thead>
-              <tbody>   
+              <tbody>
               </tbody>
               <tfoot>
                 <tr class="bg-gray">
@@ -140,7 +153,7 @@
                 </tr>
                 <tr class="bg-gray">
                   <th class="text-right" colspan="6">
-                    <?php echo trans('label_order_tax');?> (%)
+                    <?php echo trans('label_order_tax'); ?> (%)
                   </th>
                   <th class="col-sm-2 text-right">
                     <input ng-change="addOrderTax();" id="order-tax" class="text-right p-5" type="taxt" name="order-tax" ng-model="orderTax" onclick="this.select();" ondrop="return false;" onkeypress="return IsNumeric(event);" onpaste="return false;" autocomplete="off">
@@ -190,9 +203,9 @@
                   </th>
                   <th class="col-sm-2 text-center">
                     <select id="pmethod-id" class="form-control select2" name="pmethod-id">
-                      <?php foreach (get_pmethods() as $pmethod):?>
-                        <option value="<?php echo $pmethod['pmethod_id'];?>"><?php echo $pmethod['name'];?></option>
-                      <?php endforeach;?>
+                      <?php foreach (get_pmethods() as $pmethod) : ?>
+                        <option value="<?php echo $pmethod['pmethod_id']; ?>"><?php echo $pmethod['name']; ?></option>
+                      <?php endforeach; ?>
                     </select>
                   </th>
                   <th class="w-25p">&nbsp;</th>
@@ -233,13 +246,13 @@
       </div>
     </div>
     <div class="form-group">
-      <div class="col-sm-4 col-sm-offset-3 text-center">            
+      <div class="col-sm-4 col-sm-offset-3 text-center">
         <button id="create-purchase-submit" class="btn btn-block btn-lg btn-info" data-form="#form-purchase" data-datatable="#purchase-purchase-list" name="submit" data-loading-text="Processing...">
           <i class="fa fa-fw fa-save"></i>
           <?php echo trans('button_submit'); ?>
         </button>
       </div>
-      <div class="col-sm-2 text-center">            
+      <div class="col-sm-2 text-center">
         <button type="reset" class="btn btn-block btn-lg btn-danger" id="reset" name="reset">
           <span class="fa fa-fw fa-circle-o"></span>
           <?php echo trans('button_reset'); ?>
@@ -250,12 +263,12 @@
 </form>
 
 <script type="text/javascript">
-$(document).ready(function() {
-  $('.datepicker').datepicker({
-    language: langCode,
-    format: "yyyy-mm-dd",
-    autoclose:true,
-    todayHighlight: true
-  }).datepicker("setDate",'now');
-});
+  $(document).ready(function() {
+    $('.datepicker').datepicker({
+      language: langCode,
+      format: "yyyy-mm-dd",
+      autoclose: true,
+      todayHighlight: true
+    }).datepicker("setDate", 'now');
+  });
 </script>
