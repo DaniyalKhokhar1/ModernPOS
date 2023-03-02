@@ -59,12 +59,12 @@
 
       <div class="form-group">
         <label for="sup_type" class="col-sm-3 control-label">
-          Purchase Type<i class="required">*</i>
+          <?php echo trans('label_purchase_type'); ?><i class="required">*</i>
         </label>
         <div class="col-sm-6">
           <select id="sup_type" class="form-control select2" name="sup_type">
             <option value=""><?php echo trans('text_select'); ?></option>
-            <option value="Supplier">Supplier</option>
+            <option value="Supplier"><?php echo trans('text_select'); ?></option>
             <option value="Walk In Supplier">Walk In Supplier</option>
           </select>
         </div>
