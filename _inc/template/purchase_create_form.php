@@ -15,7 +15,7 @@
         <?php echo trans('label_reference_no'); ?><i class="required">*</i>
       </label>
       <div class="col-sm-6">
-        <input type="hidden" class="form-control" id="reference_no" name="reference_no" autocomplete="off">
+        <input type="hidden" class="form-control" id="reference_no" name="reference_no" autocomplete="off" value="<?php echo rand(); ?>">
       </div>
     </div>
 
@@ -64,15 +64,84 @@
         <div class="col-sm-6">
           <select id="sup_type" class="form-control select2" name="sup_type">
             <option value=""><?php echo trans('text_select'); ?></option>
-            <option value="Supplier"><?php echo trans('text_select'); ?></option>
-            <option value="Walk In Supplier">Walk In Supplier</option>
+            <option value="Supplier"><?php echo trans('label_supplier'); ?></option>
+            <option value="Walk In Supplier"><?php echo trans('label_walk_in_supplier'); ?></option>
           </select>
         </div>
       </div>
 
-      <div class="form-group sup-id-selector">
+      <div class="form-group" id="walk_in_name">
+        <label for="sup_name" class="col-sm-3 control-label">
+          <?php echo trans('label_name'); ?>
+        </label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" id="sup_name" name="sup_name" autocomplete="off">
+        </div>
+      </div>
+
+      <div class="form-group" id="walk_in_cnic">
+        <label for="sup_cnic" class="col-sm-3 control-label">
+          <?php echo trans('label_cnic'); ?>
+        </label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" id="sup_cnic" name="sup_cnic" autocomplete="off">
+        </div>
+      </div>
+
+      <div class="form-group" id="walk_in_phone">
+        <label for="sup_phone" class="col-sm-3 control-label">
+          <?php echo trans('label_phone'); ?>
+        </label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" id="sup_phone" name="sup_phone" autocomplete="off">
+        </div>
+      </div>
+
+      <div class="form-group" id="walk_in_cnicf">
+        <label for="add_cnic_front" class="col-sm-3 control-label">
+          <?php echo trans('label_cnic_front'); ?>
+        </label>
+        <div class="col-sm-7">
+          <div class="preview-thumbnail">
+            <a ng-click="POSFilemanagerModal({target:'image',thumb:'image_thumb'})" onClick="return false;" href="#" data-toggle="image" id="image_thumb">
+              <img src="../assets/itsolution24/img/noimage.jpg">
+            </a>
+            <input type="hidden" name="cnic_front" id="cnic_front" value="">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" id="walk_in_cnicb">
+        <label for="add_cnic_back" class="col-sm-3 control-label">
+          <?php echo trans('label_cnic_back'); ?>
+        </label>
+        <div class="col-sm-7">
+          <div class="preview-thumbnail">
+            <a ng-click="POSFilemanagerModal({target:'image',thumb:'image_thumb'})" onClick="return false;" href="#" data-toggle="image" id="image_thumb">
+              <img src="../assets/itsolution24/img/noimage.jpg">
+            </a>
+            <input type="hidden" name="cnic_back" id="cnic_back" value="">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" id="walk_in_thumb">
+        <label for="add_thumb" class="col-sm-3 control-label">
+          <?php echo trans('label_thumb_impression'); ?>
+        </label>
+        <div class="col-sm-7">
+          <div class="preview-thumbnail">
+            <a ng-click="POSFilemanagerModal({target:'image',thumb:'image_thumb'})" onClick="return false;" href="#" data-toggle="image" id="image_thumb">
+              <img src="../assets/itsolution24/img/noimage.jpg">
+            </a>
+            <input type="hidden" name="thumb_impression" id="thumb_impression" value="">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group sup-id-selector" id="sup_main">
         <label for="sup_id" class="col-sm-3 control-label">
-          <?php echo trans('label_supplier'); ?><i class="required">*</i>
+          <?php echo trans('label_supplier'); ?>
         </label>
         <div class="col-sm-6">
           <select id="sup_id" class="form-control select2" name="sup_id">

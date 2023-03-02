@@ -18,6 +18,7 @@ $document->setTitle(trans('title_purchase'));
 
 // Add Script
 $document->addScript('../assets/itsolution24/angular/controllers/PurchaseController.js');
+$document->addScript('../assets/itsolution24/js/purchase.js');
 
 // ADD BODY CLASS
 $document->setBodyClass('sidebar-collapse');

@@ -196,6 +196,7 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
     $due = $request->post['due-amount'];
     $balance = $request->post['change-amount'];
     $total_paid = $paid_amount;
+    $purchase_type = $request->post['sup_type'];
 
     // Check for dublicate, if present then update otherwise insert
     $statement = db()->prepare("SELECT * FROM `purchase_info` WHERE `invoice_id` = ?");
@@ -248,8 +249,8 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
         }
         
         // Insert purchase item
-        $statement = db()->prepare("INSERT INTO `purchase_item` (invoice_id, store_id, item_id, category_id, brand_id, item_name, item_purchase_price, item_selling_price, item_quantity, status, item_total, item_tax, tax_method, tax, gst, cgst, sgst, igst) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $statement->execute(array($invoice_id, $store_id, $id, $category_id, $brand_id, $item_name, $item_purchase_price, $item_selling_price, $item_quantity, $status, $item_total, $item_tax, $tax_method, $taxrate, $taxrate, $cgst, $sgst, $igst));
+        $statement = db()->prepare("INSERT INTO `purchase_item` (invoice_id, store_id, item_id, category_id, brand_id, item_name, item_purchase_price, item_selling_price, item_quantity, status, item_total, item_tax, tax_method, tax, gst, cgst, sgst, igst, purchase_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $statement->execute(array($invoice_id, $store_id, $id, $category_id, $brand_id, $item_name, $item_purchase_price, $item_selling_price, $item_quantity, $status, $item_total, $item_tax, $tax_method, $taxrate, $taxrate, $cgst, $sgst, $igst, $purchase_type));
         
         // Update stock quantity
         $statement = db()->prepare("UPDATE `product_to_store` SET `purchase_price` = ?, `sell_price` = ?, `quantity_in_stock` = `quantity_in_stock` + $item_quantity WHERE `product_id` = ? AND `store_id` = ?");
