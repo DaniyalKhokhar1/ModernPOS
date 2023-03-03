@@ -546,9 +546,9 @@ function (
 		e.stopImmediatePropagation();
         e.stopPropagation();
         e.preventDefault();
-        if (!$scope.sup_id) {
-            window.swal("Oops!", "Please, select supplier first", "warning");
-        }
+        // if (!$scope.sup_id) {
+        //     window.swal("Oops!", "Please, select supplier first", "warning");
+        // }
         var $this = $(this);
         $this.attr('autocomplete', 'off');
         var type = $this.data("type");
@@ -562,7 +562,7 @@ function (
                     dataType: "json",
                     method: "post",
                     data: $.param({
-                       sup_id: $scope.sup_id,
+                    //    sup_id: $scope.sup_id,
                        name_starts_with: request.term,
                        type: type
                     }),
