@@ -93,7 +93,7 @@ function (
     $scope.customerArray = [];
     $scope.showCustomerList = function (isClick) {
         if ($scope.isEditMode) { return false; }
-        if (isClick) { $scope.customerName = ""; }
+        // if (isClick) { $scope.customerName = ""; }
         if (window.deviceType == 'computer') {
             $("#customer-name").focus();
         }
@@ -1018,17 +1018,17 @@ function (
             window.toastr.error("Please, select at least one product item", "Warning!");
             return false;
         }
-        if (!$scope.customerName) {
-            if (window.store.sound_effect == 1) {
-                window.storeApp.playSound("error.mp3");
-            }
-            window.toastr.error("Please, select a customer", "Warning!");
-            return false;
-        } 
-        $scope.customerId = $(document).find("input[name=\"customer-id\"]").val();
-        if ($("#customer-mobile-number").val()) {
-            $scope.customerMobileNumber = $("#customer-mobile-number").val();
-        }
+        // if (!$scope.customerName) {
+        //     if (window.store.sound_effect == 1) {
+        //         window.storeApp.playSound("error.mp3");
+        //     }
+        //     window.toastr.error("Please, select a customer", "Warning!");
+        //     return false;
+        // } 
+        // $scope.customerId = $(document).find("input[name=\"customer-id\"]").val();
+        // if ($("#customer-mobile-number").val()) {
+        //     $scope.customerMobileNumber = $("#customer-mobile-number").val();
+        // }
         setTimeout(function() {
             PaymentFormModal($scope);
         }, 300);
