@@ -59,14 +59,14 @@ function (API_URL,
                 $(document).delegate("#email-btn", "click", function (e) {
                     e.stopPropagation();
 
-                    var recipientName = $(this).data("customername");
+                    // var recipientName = $(this).data("customername");
                     var thehtml = $("#invoice").html();
                     var invoice = {
                         template: "invoice", 
                         styles:$($("#invoice").html()).find("#styles").text(),
                         subject: "Invoice#"+$(this).data("invoiceid"), 
                         title: "Send Invoice through Email", 
-                        recipientName: recipientName, 
+                        // recipientName: recipientName, 
                         senderName: window.store.name, 
                         html: thehtml
                     };

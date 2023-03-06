@@ -113,7 +113,7 @@ function (
                 {data : "created_at"},
                 {data : "reference_no"},
                 {data : "created_by"},
-                {data : "customer_name"},
+                // {data : "customer_name"},
                 {data : "payable_amount"},
                 {data : "status"},
                 {data : "action"},

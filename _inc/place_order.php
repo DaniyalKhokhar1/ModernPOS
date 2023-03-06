@@ -37,9 +37,9 @@ function validate_customer_request_data($request)
   }
 
   // Validate customer id
-  if (!validateInteger($request->post['customer-id'])) {
-    throw new Exception(trans('error_invoice_customer'));
-  }
+  // if (!validateInteger($request->post['customer-id'])) {
+  //   throw new Exception(trans('error_invoice_customer'));
+  // }
 }
 
 // Validate invoice items

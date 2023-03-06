@@ -22,21 +22,21 @@ window.angularApp.factory("PaymentOnlyModal", ["API_URL", "window", "jQuery", "$
             controller: function ($scope, $uibModalInstance) {
                 $scope.loadModal = function() {
                     $(document).find("body").addClass("overlay-loader");
-                    $http({
-                      url: window.baseUrl + "/_inc/template/payment_only_form.php?customer_id="+$scope.order.customer_id,
-                      method: "GET"
-                    })
-                    .then(function(response, status, headers, config) {
-                        $scope.modal_title = "Payment > " + $scope.order.customer_name;
-                        $scope.rawHtml = $sce.trustAsHtml(response.data);
-                        setTimeout(function() {
-                            storeApp.bootBooxHeightAdjustment();
-                            $(document).find("body").removeClass("overlay-loader");
-                        }, 500);                 
-                    }, function(response) {
-                       window.swal("Oops!", response.data.errorMsg, "error");
-                       $(document).find("body").removeClass("overlay-loader");
-                    });
+                    // $http({
+                    //   url: window.baseUrl + "/_inc/template/payment_only_form.php?customer_id="+$scope.order.customer_id,
+                    //   method: "GET"
+                    // })
+                    // .then(function(response, status, headers, config) {
+                    //     $scope.modal_title = "Payment > " + $scope.order.customer_name;
+                    //     $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    //     setTimeout(function() {
+                    //         storeApp.bootBooxHeightAdjustment();
+                    //         $(document).find("body").removeClass("overlay-loader");
+                    //     }, 500);                 
+                    // }, function(response) {
+                    //    window.swal("Oops!", response.data.errorMsg, "error");
+                    //    $(document).find("body").removeClass("overlay-loader");
+                    // });
                 };
                 $scope.loadModal();
 
@@ -51,7 +51,7 @@ window.angularApp.factory("PaymentOnlyModal", ["API_URL", "window", "jQuery", "$
                       method: "GET"
                     })
                     .then(function(response, status, headers, config) {
-                        $scope.modal_title = "Payment > " + $scope.order.customer_name;
+                        // $scope.modal_title = "Payment > " + $scope.order.customer_name;
                         $scope.rawPaymentMethodHtml = $sce.trustAsHtml(response.data);
                         if ($scope.pmethodCode == 'credit') {
                             if (parseFloat($scope.customerBalance) < parseFloat($scope.order.due)) {

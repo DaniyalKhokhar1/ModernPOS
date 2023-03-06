@@ -19,21 +19,21 @@ window.angularApp.factory("PaymentFormModal", ["API_URL", "window", "jQuery", "$
                         "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $(document).find("body").addClass("overlay-loader");
-                $http({
-                  url: window.baseUrl + "/_inc/template/payment_form.php?customer_id="+$scope.customerId,
-                  method: "GET"
-                })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Payment > " + $scope.customerName;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
-                    setTimeout(function() {
-                        storeApp.bootBooxHeightAdjustment();
-                        $(document).find("body").removeClass("overlay-loader");
-                    }, 500);                 
-                }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
-                   $(document).find("body").removeClass("overlay-loader");
-                });
+                // $http({
+                //   url: window.baseUrl + "/_inc/template/payment_form.php?customer_id="+$scope.customerId,
+                //   method: "GET"
+                // })
+                // .then(function(response, status, headers, config) {
+                //     $scope.modal_title = "Payment > " + $scope.customerName;
+                //     $scope.rawHtml = $sce.trustAsHtml(response.data);
+                //     setTimeout(function() {
+                //         storeApp.bootBooxHeightAdjustment();
+                //         $(document).find("body").removeClass("overlay-loader");
+                //     }, 500);                 
+                // }, function(response) {
+                //    window.swal("Oops!", response.data.errorMsg, "error");
+                //    $(document).find("body").removeClass("overlay-loader");
+                // });
 
                 $scope.sellWithInstallment = function() {
                     if ($scope.isInstallmentOrder == 0) {
@@ -59,7 +59,7 @@ window.angularApp.factory("PaymentFormModal", ["API_URL", "window", "jQuery", "$
                       method: "GET"
                     })
                     .then(function(response, status, headers, config) {
-                        $scope.modal_title = "Payment > " + $scope.customerName;
+                        // $scope.modal_title = "Payment > " + $scope.customerName;
                         $scope.rawPaymentMethodHtml = $sce.trustAsHtml(response.data);
                         if ($scope.pmethodCode == 'credit') {
                             if (parseFloat($scope.customerBalance) < parseFloat($scope.totalPayable)) {
@@ -132,22 +132,22 @@ window.angularApp.factory("PaymentFormModal", ["API_URL", "window", "jQuery", "$
                             }
                         }
 
-                        if ($scope.customerMobileNumber && window.settings.invoice_auto_sms == '1') {
-                            $http({
-                                url: window.baseUrl + "/_inc/sms/index.php",
-                                method: "POST",
-                                data: "phone_number="+$scope.customerMobileNumber+"&invoice_id="+$scope.invoiceId+"&action_type=SEND",
-                                cache: false,
-                                processData: false,
-                                contentType: false,
-                                dataType: "json"
-                            }).
-                            then(function(response) {
-                                window.toastr.success("SMS sent to the number: " + $scope.customerMobileNumber, "Success!");
-                            }, function(response) {
-                                window.swal("Oops!", response.data.errorMsg, "error");
-                            });
-                        }
+                        // if ($scope.customerMobileNumber && window.settings.invoice_auto_sms == '1') {
+                        //     $http({
+                        //         url: window.baseUrl + "/_inc/sms/index.php",
+                        //         method: "POST",
+                        //         data: "phone_number="+$scope.customerMobileNumber+"&invoice_id="+$scope.invoiceId+"&action_type=SEND",
+                        //         cache: false,
+                        //         processData: false,
+                        //         contentType: false,
+                        //         dataType: "json"
+                        //     }).
+                        //     then(function(response) {
+                        //         window.toastr.success("SMS sent to the number: " + $scope.customerMobileNumber, "Success!");
+                        //     }, function(response) {
+                        //         window.swal("Oops!", response.data.errorMsg, "error");
+                        //     });
+                        // }
 
                         $scope.resetPos();
                         $scope.closePaymentFormModal();
